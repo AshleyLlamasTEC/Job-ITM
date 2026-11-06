@@ -2,22 +2,10 @@
 
 Bolsa de trabajo del Tecnologico de Mexicali. Practica de **Programacion Web**.
 
-Implementacion de la fase de construccion del documento
-`Diseno_Fase2_Bolsa_de_Trabajo_TecMexicali.docx`, en seis etapas (apartado 12.1):
-
-| Etapa | Que se construye | Estado |
-| ----- | ---------------- | ------ |
-| E-1 | Entorno, migraciones, autenticacion y roles | Terminada |
-| E-2 | Perfiles, catalogos, alta de vacantes y buscador | Terminada |
-| E-3 | Panel de la empresa y estados de la vacante | Terminada en el backend; falta la interfaz |
-| E-4 | Postulaciones, candidatos y notificaciones | Terminada |
-| E-5 | Panel de Vinculacion, reportes e indicadores | Terminada |
-| E-6 | Pruebas de aceptacion, despliegue y manuales | En curso (criterios verificados; falta produccion) |
-
-E-3 no se construyo como etapa aparte porque su backend (tablero, perfil de la
-empresa, logo, formulario estandarizado y ciclo de estados de la vacante) quedo
-resuelto al hacer E-2. Lo que falta de E-3 es la pantalla, y eso corresponde al
-frontend.
+Job ITM es una bolsa de trabajo para el Tecnologico de Mexicali. Conecta a
+alumnos y egresados con empresas de Baja California para practicas profesionales,
+servicio social y empleo formal. Tiene cuatro tipos de usuario: alumno, empresa,
+vinculacion (personal del Tec) y administrador.
 
 ## Stack
 
@@ -73,7 +61,7 @@ api/src/
 │   ├── services/        reglas de negocio (Vacantes, Postulaciones, Perfiles, Vinculacion)
 │   ├── models/          tabla, llaves, ocultos y conversiones
 │   └── middleware/      autenticar, autorizar, manejarErrores, subirArchivo
-├── routes/              api.ts + modulos por apartado del capitulo 5
+├── routes/              api.ts + modulos por recurso
 ├── support/             utilidades transversales
 │   ├── auth/            hash bcrypt, tokens Sanctum, enlaces firmados
 │   ├── authorization/   roles y permisos (spatie)
@@ -188,8 +176,8 @@ Los entregables escritos de E-6 viven en `manuales/`:
 - `manuales/Manual_de_instalacion.md` — requisitos, `.env`, migraciones,
   tareas programadas, respaldo y restauracion, publicacion.
 - `manuales/Manual_de_usuario.md` — flujo de los tres roles y mantenimiento.
-- `manuales/Criterios_de_aceptacion.md` — tabla 38 del diseno con el estado
-  de cada criterio y que lo demuestra (pruebas automatizadas o bench).
+- `manuales/Criterios_de_aceptacion.md` - estado de cada criterio de
+  aceptacion y que lo demuestra (pruebas automatizadas o bench).
 
 Atajos: `tests/aceptacion.test.ts` (una prueba por CA), `npm run bench`,
 `npm run backup` + `npm run backup -- --restaurar=<archivo>`.
@@ -351,12 +339,9 @@ notas privadas de la empresa nunca salen en una respuesta del estudiante.
 | GET | `/empresa/candidatos/{postulacion}/cv` | `postulaciones.gestionar` (devuelve enlace firmado) |
 | GET | `/empresa/exportar/candidatos?vacante_id=` | `postulaciones.gestionar` |
 
-La exportacion pide el permiso `reportes.exportar` en la tabla 26 del
-documento, pero la matriz del apartado 4.7 solo se lo concede a Vinculacion.
-Para que la empresa pueda descargar a sus propios candidatos se exige
-`postulaciones.gestionar`, que es el permiso que si tiene. Es una
-contradiccion del documento, no una correccion a la matriz, y conviene
-reportarla.
+La exportacion de candidatos de la empresa exige `postulaciones.gestionar`
+(el permiso que la empresa tiene), en lugar de `reportes.exportar` (que solo
+tiene Vinculacion).
 
 ### Moderacion y panel de Vinculacion
 
@@ -432,7 +417,7 @@ curl -X POST http://localhost:3000/api/v1/auth/login \
 
 ## Base de datos
 
-Catorce tablas de negocio segun el diccionario de datos del apartado 4.4:
+Catorce tablas de negocio segun el diccionario de datos:
 
 `users`, `estudiantes`, `empresas`, `carreras`, `vacantes`, `postulaciones`,
 `favoritos`, `notificaciones`, `reportes`, `roles`, `permissions`,
@@ -441,11 +426,10 @@ Catorce tablas de negocio segun el diccionario de datos del apartado 4.4:
 Mas dos tablas de infraestructura que el documento no listaba pero que sus
 propios endpoints requieren:
 
-- `personal_access_tokens` — la tabla de Laravel Sanctum. El apartado 5.1 habla
-  de tokens por dispositivo, asi que se reproduce su estructura exacta.
-- `bitacora` — el endpoint `GET /admin/bitacora` y el apartado 8.5 exigen
-  registrar cada accion administrativa con usuario, fecha y datos anteriores y
-  nuevos. Sin esta tabla el requisito no se puede cumplir.
+- `personal_access_tokens` - la tabla de Laravel Sanctum, para tokens por
+  dispositivo.
+- `bitacora` - registra cada accion administrativa con usuario, fecha y datos
+  anteriores y nuevos (exigido por `GET /admin/bitacora`).
 
 Los nombres de columna siguen el diccionario (`creado_en`, `actualizado_en`),
 salvo en las tablas que replican paquetes de Laravel (`roles`, `permissions`,
