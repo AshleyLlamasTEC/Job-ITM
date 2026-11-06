@@ -469,25 +469,3 @@ Los enlaces de verificacion y de restablecimiento se firman con HMAC-SHA256
 usando `APP_KEY`, con vencimiento incluido en la firma. No hace falta una tabla
 de tokens de un solo uso.
 
-## Notas y discrepancias del documento
-
-Puntos donde el documento de diseno no alcanza o se contradice consigo mismo;
-conviene reportarlos a la profesora en lugar de "arreglarlo" en silencio:
-
-1. **Dos tablas de infraestructura que no estan en el diccionario** (14 tablas
-   de negocio): `personal_access_tokens` y `bitacora`. Sus propios requisitos
-   las exigen (apartados 5.1, 5.6 y 8.5).
-2. **Permiso de exportacion contradictorio**: la tabla 26 pide
-   `reportes.exportar` y solo se lo da a Vinculacion, pero la empresa necesita
-   su propia exportacion. Se exige `postulaciones.gestionar`.
-3. **La linea de tiempo de una candidatura no tiene tabla propia**: el
-   diccionario solo guarda el ultimo cambio (`fecha_estado`). Se reconstruye
-   desde `bitacora` (acciones `postulacion_recibida` y `cambio_estado_postulacion`).
-4. **`postulaciones.estado` es un ENUM cerrado** de seis estados; `rechazado`
-   se trata como estado final y el resto avanzan solo hacia adelante.
-5. **Zona horaria**: el apartado 5.1 pide ISO 8601 en UTC. MySQL calcula
-   `CURRENT_TIMESTAMP` con la zona de su sesion (por defecto la del sistema),
-   asi que la conexion se fija en UTC (`SET time_zone = '+00:00'`) para que
-   coincida con la opcion `timezone: "Z"` del driver. Las comparaciones de
-   vigencia ("hoy", cierre de vacante, `fecha_cierre`) usan la zona de la
-   aplicacion (`APP_TIMEZONE`, `America/Tijuana`), no la UTC.
