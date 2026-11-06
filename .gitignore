@@ -1,0 +1,40 @@
+# Dependencias
+node_modules/
+.npm/
+
+# Compilados
+dist/
+build/
+*.tsbuildinfo
+
+# Entorno
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Registros
+*.log
+logs/
+npm-debug.log*
+
+# Archivos subidos por los usuarios (nunca al repositorio)
+api/storage/app/private/*
+!api/storage/app/private/.gitkeep
+api/storage/app/public/*
+!api/storage/app/public/.gitkeep
+
+# Respaldos de base de datos
+database/backups/*.sql
+api/backups/*.sql
+api/backups/**/
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Cobertura de pruebas
+coverage/

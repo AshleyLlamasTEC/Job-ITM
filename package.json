@@ -1,0 +1,32 @@
+{
+  "name": "job-itm",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Job ITM - Bolsa de trabajo del Instituto Tecnologico de Mexicali",
+  "workspaces": [
+    "api",
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @job-itm/api",
+    "dev:web": "npm run dev -w @job-itm/web",
+    "build:web": "npm run build -w @job-itm/web",
+    "start": "npm run start -w @job-itm/api",
+    "artisan": "npm run artisan -w @job-itm/api --",
+    "migrate": "npm run migrate -w @job-itm/api",
+    "migrate:fresh": "npm run migrate:fresh -w @job-itm/api",
+    "migrate:rollback": "npm run migrate:rollback -w @job-itm/api",
+    "migrate:status": "npm run migrate:status -w @job-itm/api",
+    "seed": "npm run seed -w @job-itm/api",
+    "seed:demo": "npm run seed:demo -w @job-itm/api",
+    "bench": "npm run bench -w @job-itm/api",
+    "backup": "npm run backup -w @job-itm/api",
+    "db:reset": "npm run migrate:fresh -w @job-itm/api && npm run seed -w @job-itm/api",
+    "typecheck": "npm run typecheck -w @job-itm/api",
+    "test": "npm run test -w @job-itm/api",
+    "test:prepare": "npm run test:prepare -w @job-itm/api"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

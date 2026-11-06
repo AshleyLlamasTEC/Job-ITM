@@ -1,0 +1,48 @@
+{
+  "name": "@job-itm/api",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "API REST de Job ITM. Node.js + Express 5 + MySQL 8 con arquitectura por capas al estilo Laravel.",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "artisan": "tsx artisan.ts",
+    "migrate": "tsx artisan.ts migrate",
+    "migrate:rollback": "tsx artisan.ts migrate:rollback",
+    "migrate:fresh": "tsx artisan.ts migrate:fresh",
+    "migrate:status": "tsx artisan.ts migrate:status",
+    "seed": "tsx artisan.ts db:seed",
+    "seed:demo": "tsx artisan.ts db:seed --class=demo",
+    "schedule:run": "tsx artisan.ts schedule:run",
+    "test:prepare": "tsx scripts/preparar-pruebas.ts",
+    "bench": "tsx scripts/benchmark.ts",
+    "backup": "tsx scripts/respaldo.ts",
+    "test": "npm run test:prepare && vitest run"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "knex": "^3.1.0",
+    "multer": "^2.0.2",
+    "mysql2": "^3.14.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^22.15.0",
+    "@types/supertest": "^6.0.3",
+    "supertest": "^7.1.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1"
+  }
+}

@@ -1,0 +1,15 @@
+﻿mysql.exe : mysql: [Warning] Using a password on the command line interface can be insecure.
+En línea: 1 Carácter: 302
++ ... | Out-Null; & $m -u root -p12345678 job_itm -e "SELECT * FROM users"  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (mysql: [Warning...an be insecure.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+id	nombre	correo	rol	carrera	activo	creado_en
+1	Joseline Ashley Llamas Garcia	ashley@itmexicali.edu.mx	estudiante	Ingeniería en Sistemas Computacionales	1	2026-10-18 19:12:17
+2	Diego Alejandro Ruiz Mendez	diego@itmexicali.edu.mx	estudiante	Ingeniería en Sistemas Computacionales	1	2026-10-18 19:12:17
+3	Maria Fernanda Valenzuela Soto	fernanda@itmexicali.edu.mx	estudiante	Ingeniería Industrial	1	2026-10-18 19:12:17
+4	Carlos Eduardo Moreno Leyva	carlos@itmexicali.edu.mx	estudiante	Ingeniería Mecatrónica	0	2026-10-18 19:12:17
+5	Tecnologías del Valle S.A. de C.V.	reclutamiento@tecvalle.mx	empresa	NULL	1	2026-10-18 19:12:17
+6	Grupo Industrial Mexicali	talento@grupoim.mx	empresa	NULL	1	2026-10-18 19:12:17
+7	Vinculación Estudiantil ITM	vinculacion@itmexicali.edu.mx	vinculacion	NULL	1	2026-10-18 19:12:17

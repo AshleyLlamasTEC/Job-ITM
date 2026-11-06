@@ -1,0 +1,14 @@
+<%- include('../partials/head', { title }) %>
+<%- include('../partials/nav') %>
+
+<main class="mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-24 text-center">
+  <p class="text-6xl font-bold text-rose-500">500</p>
+  <h1 class="mt-4 text-2xl font-bold text-slate-900">Error del servidor</h1>
+  <p class="mt-2 text-sm text-slate-500">Revisa la consola y tu conexión a MySQL.</p>
+  <pre class="mt-6 max-w-full overflow-x-auto rounded-xl bg-slate-900 px-5 py-4 text-left text-xs text-rose-300"><%= detalle %></pre>
+  <a href="/" class="mt-6 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700">
+    Reintentar
+  </a>
+</main>
+
+<%- include('../partials/footer') %>
