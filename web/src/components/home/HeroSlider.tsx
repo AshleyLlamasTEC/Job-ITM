@@ -68,7 +68,9 @@ export function HeroSlider({
   const region = useRef<HTMLDivElement>(null);
 
   const mover = useCallback((delta: number) => {
-    setIndice((actual) => (actual + delta + DIAPOSITIVAS.length) % DIAPOSITIVAS.length);
+    setIndice(
+      (actual) => (actual + delta + DIAPOSITIVAS.length) % DIAPOSITIVAS.length,
+    );
   }, []);
 
   useEffect(() => {
@@ -104,20 +106,29 @@ export function HeroSlider({
             {diapositiva.ojo}
           </span>
 
-          <h1 className="mt-5 max-w-xl text-balance font-display text-4xl font-extrabold leading-[1.06] tracking-tight sm:text-5xl lg:text-[3.4rem]">
-            {diapositiva.titulo}{" "}
-            <span className="relative inline-block text-yellow-400">
-              {diapositiva.resaltado}
-              <svg
-                viewBox="0 0 200 12"
-                className="absolute -bottom-1 left-0 h-2.5 w-full text-yellow-500/60"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path d="M2 9C50 3 150 2 198 6" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
-              </svg>
-            </span>
-          </h1>
+          <div className="mt-6 flex items-center gap-3">
+            <img className="w-20" src="/public/logo-tec.png" alt="Logo del Instituto Tecnológico de Mexicali" />
+            <h1 className="mt-5 max-w-xl text-balance font-display text-4xl font-extrabold leading-[1.06] tracking-tight sm:text-5xl lg:text-[3.4rem]">
+              {diapositiva.titulo}{" "}
+              <span className="relative inline-block text-yellow-400">
+                {diapositiva.resaltado}
+                <svg
+                  viewBox="0 0 200 12"
+                  className="absolute -bottom-1 left-0 h-2.5 w-full text-yellow-500/60"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 9C50 3 150 2 198 6"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                    fill="none"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+            </h1>
+          </div>
 
           <p className="mt-5 max-w-lg text-base leading-relaxed text-blue-100/80 sm:text-lg">
             {diapositiva.descripcion}
@@ -136,7 +147,9 @@ export function HeroSlider({
               variant="outline"
               className="border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10"
             >
-              <Link to={diapositiva.secundario.a}>{diapositiva.secundario.texto}</Link>
+              <Link to={diapositiva.secundario.a}>
+                {diapositiva.secundario.texto}
+              </Link>
             </Button>
           </div>
 
@@ -163,8 +176,12 @@ export function HeroSlider({
                 <BadgeCheck className="h-4 w-4" />
               </span>
               <div>
-                <p className="text-[11px] font-bold leading-none">CV verificado</p>
-                <p className="mt-1 text-[10px] text-muted-foreground">Perfil ITM</p>
+                <p className="text-[11px] font-bold leading-none">
+                  CV verificado
+                </p>
+                <p className="mt-1 text-[10px] text-muted-foreground">
+                  Perfil ITM
+                </p>
               </div>
             </div>
 
@@ -229,7 +246,9 @@ export function HeroSlider({
                   ))}
                 </div>
                 <Button asChild size="sm" variant="yellow">
-                  <Link to={destacada ? `/vacantes/${destacada.id}` : "/vacantes"}>
+                  <Link
+                    to={destacada ? `/vacantes/${destacada.id}` : "/vacantes"}
+                  >
                     Ver vacante <ChevronRight />
                   </Link>
                 </Button>
@@ -241,8 +260,12 @@ export function HeroSlider({
                 <Building2 className="h-4 w-4" />
               </span>
               <div>
-                <p className="text-sm font-extrabold leading-none text-white">Vinculacion ITM</p>
-                <p className="mt-1 text-[10px] text-blue-200/70">Empresas validadas</p>
+                <p className="text-sm font-extrabold leading-none text-white">
+                  Vinculacion ITM
+                </p>
+                <p className="mt-1 text-[10px] text-blue-200/70">
+                  Empresas validadas
+                </p>
               </div>
             </div>
           </div>
@@ -250,7 +273,11 @@ export function HeroSlider({
       </div>
 
       <div className="contenedor relative mt-12 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2" role="tablist" aria-label="Elegir diapositiva">
+        <div
+          className="flex items-center gap-2"
+          role="tablist"
+          aria-label="Elegir diapositiva"
+        >
           {DIAPOSITIVAS.map((d, i) => (
             <button
               key={d.ojo}
@@ -261,7 +288,9 @@ export function HeroSlider({
               onClick={() => setIndice(i)}
               className={cn(
                 "h-1.5 rounded-full transition-all duration-500",
-                i === indice ? "w-10 bg-yellow-400" : "w-4 bg-white/25 hover:bg-white/50",
+                i === indice
+                  ? "w-10 bg-yellow-400"
+                  : "w-4 bg-white/25 hover:bg-white/50",
               )}
             />
           ))}
@@ -269,7 +298,8 @@ export function HeroSlider({
 
         <div className="flex items-center gap-2">
           <span className="mr-2 hidden text-xs font-semibold tabular-nums text-blue-200/60 sm:block">
-            {String(indice + 1).padStart(2, "0")} / {String(DIAPOSITIVAS.length).padStart(2, "0")}
+            {String(indice + 1).padStart(2, "0")} /{" "}
+            {String(DIAPOSITIVAS.length).padStart(2, "0")}
           </span>
           <button
             type="button"
